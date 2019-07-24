@@ -57,6 +57,16 @@ return [
         'terminalId'    => 000000000,
         'callback-url'  => '/'
     ],
+
+    //--------------------------------
+    // Eghtesad Novin gateway
+    //--------------------------------
+    'eghtesadnovin' => [
+        'merchant'      => '',
+        'transactionKey'=> '',
+        'terminalId'    => 000000000,
+        'callback-url'  => '/'
+    ],
     
     //--------------------------------
     // Parsian gateway

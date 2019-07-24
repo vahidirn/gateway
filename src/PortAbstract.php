@@ -2,6 +2,7 @@
 namespace VahidIrn\Gateway;
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Schema;
 use VahidIrn\Gateway\Enum;
 use Carbon\Carbon;
 
@@ -230,9 +231,15 @@ abstract class PortAbstract
 		$genuid = function(){
 			return substr(str_pad(str_replace('.','', microtime(true)),12,0),0,12);
 		};
+
 		$uid=$genuid();
-		while ($this->getTable()->whereId($uid)->first())
-			$uid = $genuid();
+
+
+        if(config('database.default', 'mysql') != 'neo4j'){
+            while ($this->getTable()->whereId($uid)->first())
+                $uid = $genuid();
+        }
+
 		return $uid;
 	}
 
@@ -244,9 +251,8 @@ abstract class PortAbstract
 	protected function newTransaction()
 	{
 		$uid = $this->getTimeId();
-
 		$this->transactionId = $this->getTable()->insert([
-			'id' 			=> $uid,
+			'transaction_id' 			=> $uid,
 			'port' 			=> $this->getPortName(),
 			'price' 		=> $this->amount,
 			'status' 		=> Enum::TRANSACTION_INIT,

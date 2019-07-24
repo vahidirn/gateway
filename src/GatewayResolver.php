@@ -2,6 +2,7 @@
 
 namespace VahidIrn\Gateway;
 
+use VahidIrn\Gateway\Eghtesadnovin\Eghtesadnovin;
 use VahidIrn\Gateway\Parsian\Parsian;
 use VahidIrn\Gateway\Paypal\Paypal;
 use VahidIrn\Gateway\Sadad\Sadad;
@@ -30,7 +31,7 @@ class GatewayResolver
 	/**
 	 * Keep current port driver
 	 *
-	 * @var Mellat|Saman|Sadad|Zarinpal|Payir|Parsian
+	 * @var Mellat|Eghtesadnovin|Saman|Sadad|Zarinpal|Payir|Parsian
 	 */
 	protected $port;
 
@@ -59,6 +60,7 @@ class GatewayResolver
 	{
 		return [
             Enum::MELLAT,
+            Enum::EGHTESADNOVIN,
             Enum::SADAD,
             Enum::ZARINPAL,
             Enum::PARSIAN,
@@ -141,6 +143,8 @@ class GatewayResolver
 			$name = Enum::MELLAT;
 		} elseif ($port InstanceOf Parsian) {
 			$name = Enum::PARSIAN;
+		} elseif ($port InstanceOf Eghtesadnovin) {
+			$name = Enum::EGHTESADNOVIN;
 		} elseif ($port InstanceOf Saman) {
 			$name = Enum::SAMAN;
 		} elseif ($port InstanceOf Zarinpal) {
