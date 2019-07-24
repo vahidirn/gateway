@@ -338,6 +338,9 @@ class Eghtesadnovin extends PortAbstract implements PortInterface
      */
     public function reverseTrans()
     {
+
+        $this->login();
+
         $params = array(
             'param' => array(
                 'WSContext' => $this->getWsContext(),
