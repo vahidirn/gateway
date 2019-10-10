@@ -117,15 +117,15 @@ class GatewayResolver
 			$id = $this->request->get('iN');
 		}
 
-		$transaction = $this->getTable()->whereId($id)->first();
+		$transaction = $this->getTable()->where('transaction_id', $id)->first();
 
 		if (!$transaction)
 			throw new NotFoundTransactionException;
 
-		if (in_array($transaction->status, [Enum::TRANSACTION_SUCCEED, Enum::TRANSACTION_FAILED]))
+		if (in_array($transaction['status'], [Enum::TRANSACTION_SUCCEED, Enum::TRANSACTION_FAILED]))
 			throw new RetryException;
 
-		$this->make($transaction->port);
+		$this->make($transaction['port']);
 
 		return $this->port->verify($transaction);
 	}

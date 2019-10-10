@@ -14,7 +14,7 @@
 
             var hiddenField = document.createElement("input");
         	hiddenField.setAttribute("name", "token");
-        	hiddenField.setAttribute("value", "{{$refId}}");
+        	hiddenField.setAttribute("value", "{{$token}}");
             form.appendChild(hiddenField);
 
 

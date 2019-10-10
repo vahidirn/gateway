@@ -99,7 +99,7 @@ abstract class PortAbstract
 	/**
 	 * @return mixed
 	 */
-	function getTable() 
+	function getTable()
 	{
 		return $this->db->table($this->config->get('gateway.table'));
 	}
@@ -220,11 +220,11 @@ abstract class PortAbstract
 	 */
 	function verify($transaction)
 	{
-		$this->transaction = $transaction;
-		$this->transactionId = $transaction->id;
-		$this->amount = intval($transaction->price);
-		$this->refId = $transaction->ref_id;
-	}
+        $this->transaction = $transaction;
+        $this->transactionId = $transaction['transaction_id'];
+        $this->amount = intval($transaction['price']);
+		$this->refId = $transaction['transaction_id'];
+    }
 
 	function getTimeId()
 	{
