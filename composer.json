@@ -1,5 +1,6 @@
 {
   "name": "vahidirn/gateway",
+  "version": "1.0.0",
   "homepage": "https://github.com/vahidirn/gateway",
   "description": "A Laravel package for connecting to all Iraninan payment  gateways",
   "keywords": [
